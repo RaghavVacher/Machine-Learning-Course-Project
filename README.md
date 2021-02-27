@@ -23,7 +23,7 @@ The data for this project come from this source: http://web.archive.org/web/2016
 
 ###Project
 
-Loading the Data & Cleaning the Data:
+```Loading the Data & Cleaning the Data:
   set.seed(69)
   library(caret)
   #removal of the empty variables
@@ -116,13 +116,14 @@ Loading the Data & Cleaning the Data:
 ## 4              -16              658              469      A
 ## 5              -17              655              473      A
 ## 6               -9              660              478      A
+```
 Cross Validation
 As the data-sets have already been divided into training and testing data-sets, I would no be further dividing the datasets and use the already cross validated datasets
 
 Creation of the Algorithm
 The algorithm will be a random forest based training. This is done as random forests provides a good and easy ML algorithm which has a high accuracy.
 
-library(caret)
+```library(caret)
   #Creation of Models
   model_rf <- train(classe ~ ., method = "rf", data = training)
     model_rf
@@ -148,4 +149,5 @@ library(caret)
   predict_rf
 ##  [1] B A B A A E D B A A B C B A E E A B B B
 ## Levels: A B C D E
+```
 As seen above the in-sample accuracy is 99, which is a considerably high accuracy. Applying this to the test set using the quiz, the results are as follows: 20/20 in the quiz results. Therefore the out-sample error and RSME is negligible.
