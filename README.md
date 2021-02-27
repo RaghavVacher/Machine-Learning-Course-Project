@@ -150,4 +150,10 @@ The algorithm will be a random forest based training. This is done as random for
 ##  [1] B A B A A E D B A A B C B A E E A B B B
 ## Levels: A B C D E
 ```
-As seen above the in-sample accuracy is 99, which is a considerably high accuracy. Applying this to the test set using the quiz, the results are as follows: 20/20 in the quiz results. Therefore the out-sample error and RSME is negligible.
+As seen above the in-sample accuracy is 99
+
+Which is a considerably high accuracy.
+
+Applying this to the test set using the quiz, the results are as follows: ***20/20 in the quiz results***
+
+Therefore the out-sample error and RSME is negligible.
