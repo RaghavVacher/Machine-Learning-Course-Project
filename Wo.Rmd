@@ -1,0 +1,59 @@
+Course Project
+==============
+
+### Background
+
+Using devices such as Jawbone Up, Nike FuelBand, and Fitbit it is now possible to collect a large amount of data about personal activity relatively inexpensively. These type of devices are part of the quantified self movement – a group of enthusiasts who take measurements about themselves regularly to improve their health, to find patterns in their behavior, or because they are tech geeks. One thing that people regularly do is quantify how much of a particular activity they do, but they rarely quantify how well they do it. In this project, your goal will be to use data from accelerometers on the belt, forearm, arm, and dumbell of 6 participants. They were asked to perform barbell lifts correctly and incorrectly in 5 different ways. More information is available from the website here: http://web.archive.org/web/20161224072740/http:/groupware.les.inf.puc-rio.br/har (see the section on the Weight Lifting Exercise Dataset).
+
+### Data
+
+The training data for this project are available here:
+
+https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv
+
+The test data are available here:
+
+https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv
+
+The data for this project come from this source: http://web.archive.org/web/20161224072740/http:/groupware.les.inf.puc-rio.br/har. If you use the document you create for this class for any purpose please cite them as they have been very generous in allowing their data to be used for this kind of assignment.
+
+# Project
+
+### Loading the Data & Cleaning the Data:
+
+```{r, warning=F, cache = T}
+  set.seed(69)
+  library(caret)
+  #removal of the empty variables
+  training = read.csv(file.choose(), na.strings=c("NA","","#DIV/0!"))
+  testing = read.csv(file.choose(), na.strings=c("NA","","#DIV/0!"))
+  training     <-training[,colSums(is.na(training)) == 0]
+  #testing     <-testing[,colSums(is.na(testing)) == 0]
+  # Removal of Unnecessary Variables
+  training <- training[-c(1:7)]
+  #testing <- testing[-c(1:7)]
+  dim(training)
+  dim(testing)
+  head(training)
+```
+
+### Cross Validation
+
+As the data-sets have already been divided into training and testing data-sets, I would no be further dividing the datasets and use the already cross validated datasets
+
+### Creation of the Algorithm
+
+The algorithm will be a random forest based training. This is done as random forests provides a good and easy ML algorithm which has a high accuracy.
+
+```{r, warning=F, cache = T}
+library(caret)
+  #Creation of Models
+  model_rf <- train(classe ~ ., method = "rf", data = training)
+    model_rf
+  
+  predict_rf <- predict(model_rf, testing)
+  predict_rf
+```
+
+As seen above the in-sample accuracy is 99, which is a considerably high accuracy. Applying this to the test set using the quiz, the results are as follows:
+20/20 in the quiz results. Therefore the out-sample error and RSME is negligible. 
